@@ -1,6 +1,6 @@
 header {
     background-color: #0DCEDA;
-    width: 100%; /* Largura total */
+    width: 100%;
     height: 100px;
     padding: 0 50px;
 }
@@ -36,7 +36,7 @@ header {
 }
 
 .info_do_logo li:last-child {
-    border-right: none; /* Remove barra do último item */
+    border-right: none;
 }
 
 .info_do_logo a{
