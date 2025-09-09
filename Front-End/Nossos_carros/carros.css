@@ -54,38 +54,3 @@ header {
 .info_do_logo a:hover {
     color: #ffffff;
 }
-
-.introducao{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
-    color: #0DCEDA;
-    text-align: center;
-    margin-top: 60px;
-}
-
-.imagens img{
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-left: 165px;
-    margin-top: 60px;
-
-}
-
-.botão{
-    align-items: center;
-    text-align: center;
-}
-.botão a{
-    font-family: Arial, Helvetica, sans-serif;
-    text-decoration: none;
-    color: #000000;
-    display: inline-block;
-    background-color: #0DCEDA;
-    padding: 16px 25px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 20px;
-    
-}
