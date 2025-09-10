@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>Alugaê - Cadastro</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='cadastrar.css'>
     <script src='main.js'></script>
@@ -18,19 +18,75 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="Contatos.html">Contatos</a>
+                        <a href="../HomePage/Contatos.html">Contatos</a>
                     </li>
                     <li>
                         <a>Minhas Reservas</a>
                     </li>
-                    <li>
-                        <a>Entrar</a>
+                    <li class="menu">
+                        <a href="#">Entrar</a>
+                        <div class="descer">
+                            <a href="../Cadastrar-user/cadastrar.html">Cadastrar</a>
+                            <a href="../Logar-user/login.html">Logar</a>
+                        </div>
                     </li>
                 </ul>
             </nav>
 
         </div>
     </header>
+
+    <div class="cadastro">
+            <h1>Cadastrar</h1>
+        </div>
+
+    <hr>   
     
+    <h2>Informações Pessoais</h2>
+
+    <div class="info_pessoal">
+        <Form>
+        <input type="string" placeholder="CPF">
+        <input type="text" placeholder="Nome">
+        <input type="date" placeholder="Data de Nascimento">
+        <input type="number" placeholder="Telefone">
+        <input type="email" placeholder="E-mail">
+        </Form>
+        
+    </div>
+
+    <hr>
+
+    <h3>Endereço</h3>
+
+    <div class="endereco">
+        <Form>
+        <input type="string" placeholder="CEP">
+        <input type="text" placeholder="Endereço">
+        <input type="number" placeholder="N°">
+        <input type="string" placeholder="Complemento">
+        <input type="text" placeholder="Bairro">
+        <input type="text" placeholder="Estado">
+        <input type="text" placeholder="Cidade">
+        </Form>
+    </div>
+
+    <hr>
+
+    <h4>Crie sua Senha</h4>
+
+    <div class="senha">
+        <Form>
+        <input type="string" placeholder="Senha">
+        <input type="string" placeholder="Confirme sua Senha">
+        </Form>
+    </div>
+
+    <div class="container-obs">
+    <div class="obs">
+        <p>Lembre-se: <br> - Minímo 8 caracter <br> - Uma letra maiúscula <br> - Um número <br> - Uma letra minúscula <br> - Um caracter especial</p>
+    </div>
+    </div>
+
 </body>
 </html>

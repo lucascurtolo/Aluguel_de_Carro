@@ -1,3 +1,4 @@
+*{ padding: 0; margin: 0}
 header {
     background-color: #0DCEDA;
     width: 95%;
@@ -53,4 +54,226 @@ header {
 }
 .info_do_logo a:hover {
     color: #ffffff;
+}
+
+.menu {
+    position: relative;
+}
+
+.descer{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: #0DCEDA;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    min-width: 120px;
+    z-index: 1000;
+}
+
+.descer a{
+    display: block;
+    padding: 12px 15px;
+    background-color: white;
+       color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.descer a:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.descer a:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: none;
+}
+
+.descer a:hover {
+    background-color: #0DCEDA;
+}
+
+.menu:hover .descer {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cadastro{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+hr{
+    border: none;
+    height: 1px;
+    background-color: #0DCEDA;
+    opacity: 40%;
+}
+
+h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.info_pessoal{
+    margin-bottom: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    max-width: 600px;
+}
+
+.info_pessoal input:last-child {
+    grid-column: 1 / -1; /* o último input ocupa as 2 colunas */
+}
+
+.info_pessoal form{
+    display: contents;
+    /* justify-content: center;
+    align-items: center;
+    height: 10vh;
+    margin: 0 auto;
+    max-width: 15%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px; */
+}
+
+input{
+    padding: 12px;
+    gap: 15px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    background-color: #0DCEDA;
+    border: 1px solid #000000; 
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+input::placeholder{
+    color: #000000;
+    opacity: 1;
+}
+
+h3{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.endereco{
+    margin-bottom: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    max-width: 600px;
+}
+
+.endereco input:last-child {
+    grid-column: 1 / -1; /* o último input ocupa as 2 colunas */
+}
+
+
+
+.endereco form{
+    display: contents;
+    /* justify-content: center;
+    align-items: center;
+    height: 10vh;
+    margin: 0 auto;
+    max-width: 15%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px; */
+}
+
+input{
+    padding: 12px;
+    gap: 15px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    background-color: #0DCEDA;
+    border: 1px solid #000000; 
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+input::placeholder{
+    color: #000000;
+    opacity: 1;
+}
+
+h4{
+   font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-top: 20px; 
+}
+
+.senha{
+    margin-bottom: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    max-width: 600px;
+}
+
+.senha form{
+    display: contents;
+}
+
+input{
+    padding: 12px;
+    gap: 15px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    background-color: #0DCEDA;
+    border: 1px solid #000000; 
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+input::placeholder{
+    color: #000000;
+    opacity: 1;
+}
+
+.container-obs {
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100% - 150px);
+    margin-top: -80px;
+    margin-right: 150px;
+}
+
+.obs {
+    width: 300px;
+    height: 100px;
+    padding: 12px;
+    background-color: #0DCEDA;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-weight: bold;
+    resize: vertical;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
 }
