@@ -1,3 +1,4 @@
+*{ padding: 0; margin: 0}
 header {
     background-color: #0DCEDA;
     width: 95%;
@@ -60,7 +61,7 @@ header {
     font-size: 50px;
     color: #0DCEDA;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 50px;
 }
 
 .imagens img{
@@ -83,9 +84,10 @@ header {
     color: #000000;
     display: inline-block;
     background-color: #0DCEDA;
-    padding: 16px 25px;
+    padding: 15px 25px;
     border-radius: 50px;
     font-weight: bold;
+    margin-top: 10px;
     font-size: 20px;   
 }
 
