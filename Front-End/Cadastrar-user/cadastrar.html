@@ -6,7 +6,6 @@
     <title>Alugaê - Cadastro</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='cadastrar.css'>
-    <script src='main.js'></script>
 </head>
 <body>
     <header>
@@ -44,49 +43,36 @@
     
     <h2>Informações Pessoais</h2>
 
-    <div class="info_pessoal">
-        <Form>
-        <input type="string" placeholder="CPF">
-        <input type="text" placeholder="Nome">
-        <input type="date" placeholder="Data de Nascimento">
-        <input type="number" placeholder="Telefone">
-        <input type="email" placeholder="E-mail">
-        </Form>
-        
-    </div>
-
-    <hr>
+<form id="cadastro_form">
+    <h2>Informações Pessoais</h2>
+    <input id="cpf" type="text" placeholder="CPF">
+    <input id="nome" type="text" placeholder="Nome">
+    <input id="data_nascimento" type="date" placeholder="Data de Nascimento">
+    <input id="telefone" type="text" placeholder="Telefone">
+    <input id="email" type="email" placeholder="E-mail">
 
     <h3>Endereço</h3>
-
-    <div class="endereco">
-        <Form>
-        <input type="string" placeholder="CEP">
-        <input type="text" placeholder="Endereço">
-        <input type="number" placeholder="N°">
-        <input type="string" placeholder="Complemento">
-        <input type="text" placeholder="Bairro">
-        <input type="text" placeholder="Estado">
-        <input type="text" placeholder="Cidade">
-        </Form>
-    </div>
-
-    <hr>
+    <input id="cep" type="text" placeholder="CEP">
+    <input id="endereco" type="text" placeholder="Endereço">
+    <input id="numero" type="text" placeholder="N°">
+    <input id="complemento" type="text" placeholder="Complemento">
+    <input id="bairro" type="text" placeholder="Bairro">
+    <input id="estado" type="text" placeholder="Estado">
+    <input id="cidade" type="text" placeholder="Cidade">
 
     <h4>Crie sua Senha</h4>
+    <input id="senha" type="password" placeholder="Senha">
+    <input id="confirma_senha" type="password" placeholder="Confirme sua Senha">
 
-    <div class="senha">
-        <Form>
-        <input type="string" placeholder="Senha">
-        <input type="string" placeholder="Confirme sua Senha">
-        </Form>
-    </div>
+    <button type="submit">Cadastrar</button>
+</form>
+
 
     <div class="container-obs">
     <div class="obs">
         <p>Lembre-se: <br> - Minímo 8 caracter <br> - Uma letra maiúscula <br> - Um número <br> - Uma letra minúscula <br> - Um caracter especial</p>
     </div>
     </div>
-
+<script src="script.js"></script>
 </body>
 </html>
