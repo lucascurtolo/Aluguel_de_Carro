@@ -119,142 +119,67 @@ hr{
     opacity: 40%;
 }
 
-h2{
+#cadastro_form h2{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
-    margin-left: 20px;
-    margin-top: 20px;
+    text-align: left;
+    padding: 15px 0;
+
 }
 
-.info_pessoal{
-    margin-bottom: 300px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+#cadastro_form{
+    max-width: 700px;
     margin: 0 auto;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    max-width: 600px;
 }
 
-.info_pessoal input:last-child {
-    grid-column: 1 / -1; /* o último input ocupa as 2 colunas */
-}
 
-.info_pessoal form{
-    display: contents;
-    /* justify-content: center;
-    align-items: center;
-    height: 10vh;
-    margin: 0 auto;
-    max-width: 15%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px; */
-}
-
-input{
-    padding: 12px;
-    gap: 15px;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    background-color: #0DCEDA;
-    border: 1px solid #000000; 
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-input::placeholder{
-    color: #000000;
-    opacity: 1;
-}
-
-h3{
+#cadastro_form h3 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
-    margin-left: 20px;
-    margin-top: 20px;
+    text-align: left;
+    padding: 15px 0;
 }
 
-.endereco{
-    margin-bottom: 300px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin: 0 auto;
+
+#cadastro_form h4 {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    max-width: 600px;
-}
-
-.endereco input:last-child {
-    grid-column: 1 / -1; /* o último input ocupa as 2 colunas */
-}
-
-
-
-.endereco form{
-    display: contents;
-    /* justify-content: center;
-    align-items: center;
-    height: 10vh;
-    margin: 0 auto;
-    max-width: 15%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px; */
-}
-
-input{
-    padding: 12px;
-    gap: 15px;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    background-color: #0DCEDA;
-    border: 1px solid #000000; 
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-input::placeholder{
-    color: #000000;
-    opacity: 1;
-}
-
-h4{
-   font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
-    margin-left: 20px;
-    margin-top: 20px; 
+    text-align: left;
+    padding: 15px 0;
 }
 
-.senha{
-    margin-bottom: 300px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin: 0 auto;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    max-width: 600px;
+#cadastro_form .grupo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
-.senha form{
-    display: contents;
+
+#cadastro_form input {
+  padding: 12px;
+  background-color: #0DCEDA;
+  border: 1px solid #000;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
 }
 
-input{
-    padding: 12px;
-    gap: 15px;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    background-color: #0DCEDA;
-    border: 1px solid #000000; 
-    border-radius: 10px;
-    font-weight: bold;
+#cadastro_form input::placeholder {
+  color: #000;
 }
 
-input::placeholder{
-    color: #000000;
-    opacity: 1;
+#cadastro_form button {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 12px;
+  background-color: #0DCEDA;
+  border: 1px solid #000;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .container-obs {
@@ -276,4 +201,22 @@ input::placeholder{
     resize: vertical;
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#cadastro_form button{
+    border: 5px solid #0DCEDA;
+    border-radius: 20px;
+    background-color: #0DCEDA;
+    color: #000000;
+    padding: 10px 25px;
+    width: 30%;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#cadastro_form button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
 }
