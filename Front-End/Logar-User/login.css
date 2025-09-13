@@ -3,7 +3,7 @@ header {
     background-color: #0DCEDA;
     width: 95%;
     height: 100px;
-    padding: 0 36px;
+    padding: 0 50px;
 }
 
 .logo img {
@@ -106,25 +106,92 @@ header {
     visibility: visible;
 }
 
-.forms{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: solid black 2px;
-    padding: 10px;
-    width: 200px;
-    height: 200px;
+
+.wrapper { width: 100%; display: flex; justify-content: center; }
+
+.forms {
+  background-color: #0DCEDA;
+  width: 320px;
+  padding: 36px 30px;
+  border-radius: 6px;
+  margin: 50px 0;
+  margin-top: 100px;
+  text-align: center;
+}
+.forms h2 {
+  margin: 0 0 22px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#login_form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+#login_form label {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: #000;
+  margin-top: 6px;
+}
+#login_form input {
+  border: none;
+  border-bottom: 2px solid rgba(0,0,0,0.9);
+  background: transparent;
+  padding: 8px 6px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+#login_form input::placeholder { color: rgba(0,0,0,0.45); }
+#login_form input:focus { border-bottom-color: rgba(0,0,0,1); }
+
+/* #login_form .forgot {
+  display: inline-block;
+  text-align: left;
+  color: #d13b3b;
+  font-size: 13px;
+  margin-top: 6px;
+  text-decoration: underline;
+} */
+
+button.primary, button.secondary {
+  display: block;
+  margin: 14px auto 0 auto;
+  padding: 10px 36px;
+  border-radius: 24px;
+  border: none;
+  background: #fff;
+  box-shadow: 2px 3px 6px rgba(0,0,0,0.18);
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+button.secondary { padding: 9px 28px; margin-top: 10px; }
+button.primary:hover, button.secondary:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.98);
 }
 
-.wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+.divisor {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  align-items: center;
+  gap: 10px;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 12px 0;
 }
-
-input{
-    padding: 7px;
+.divisor::before, .divisor::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #000;
 }
 
 

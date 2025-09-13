@@ -29,21 +29,28 @@
         </div>
     </header>
 
-    <hr>
-
+    
     <div class="wrapper">
-        <div class="forms">
-            <form id="login_form">
-                <h4>Email</h4>
-                <input id="email" type="email" placeholder="E-mail" required>
-                
-                <h4>Senha</h4>
-                <input id="senha" type="password" placeholder="Senha" required>
-                
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    </div>
+  <div class="forms">
+    <h2>Acesse sua Conta</h2>
+
+    <form id="login_form" autocomplete="on">
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" name="senha" placeholder="Senha" required>
+
+      <!-- <a class="forgot" href="#">Esqueci minha senha</a> -->
+
+      <button class="primary" type="submit">Entrar</button>
+
+      <div class="divisor">OU</div>
+
+      <button class="secondary" type="button" onclick="window.location.href='../Cadastrar-user/cadastrar.html'">Criar conta</button>
+    </form>
+  </div>
+</div>
 
     <script src="login.js"></script>
 </body>
