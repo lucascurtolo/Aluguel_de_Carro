@@ -140,3 +140,46 @@ header {
     opacity: 1;
     visibility: visible;
 }
+
+hr{
+    border: none;
+    height: 1px;
+    background-color: #0DCEDA;
+    opacity: 40%;
+    margin-top: 70px;
+}
+
+.introducao2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    color: #0DCEDA;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.botao_aluga{
+    align-items: center;
+    text-align: center;
+}
+.botao_aluga a{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: #000000;
+    display: inline-block;
+    background-color: #0DCEDA;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 20px;   
+}
+
+.imagens2 img{
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-left: 165px;
+    margin-top: 60px;
+
+}
