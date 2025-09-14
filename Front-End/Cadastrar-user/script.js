@@ -1,7 +1,7 @@
-document.getElementById("cadastro_form").addEventListener("submit", async function(event) {
+document.getElementById("cadastro_form").addEventListener("submit", async function (event) {
     event.preventDefault(); // evita recarregar a página
 
-    
+
     const data = {
         cpf: document.getElementById("cpf").value,
         nome: document.getElementById("nome").value,
@@ -18,10 +18,10 @@ document.getElementById("cadastro_form").addEventListener("submit", async functi
         senha: document.getElementById("senha").value
     };
 
-    const url = "http://127.0.0.1:5000/user"; 
+    const url = "http://127.0.0.1:5000/user";
 
     try {
-        
+
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -30,11 +30,13 @@ document.getElementById("cadastro_form").addEventListener("submit", async functi
             body: JSON.stringify(data)
         });
 
-      
+
         const result = await response.json();
 
-        
+
+
         alert(result.message);
+        window.location.replace("../Logar-user/login.html");
 
     } catch (error) {
         console.error("Erro:", error);
