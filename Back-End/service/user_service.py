@@ -43,15 +43,10 @@ class UserService:
         
 
     @staticmethod
-    def login_user(email, senha):
-        user = Usuario.query.filter_by(email = email, senha = senha).first()
-
-
-
+    def login_user(cpf, senha):
+        user = Usuario.query.filter_by(cpf=cpf, senha=senha).first()
         if user:
-            return "Bem - Vindo"
-        
-        else:
-            return "Email ou senha incorretos"
+            return {"success": True, "user": user.to_dict()}
+        return {"success": False, "error": "CPF ou senha incorretos"}
 
 

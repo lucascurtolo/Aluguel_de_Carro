@@ -5,7 +5,7 @@ db = SQLAlchemy()
 
 def init_db(app: Flask):
     app.config["SQLALCHEMY_DATABASE_URI"] = (
-        "mysql+pymysql://root:Chorisnoris%401313@localhost:3306/alugae"
+        "mysql+pymysql://root:Calleri929305@localhost:3306/alugae"
     )
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 

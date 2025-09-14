@@ -4,7 +4,7 @@ from run import app
 from flask import request, jsonify, make_response
 
 
-@app.route('/user', methods = ['POST'])
+@app.route('/user', methods=['POST'])
 def criar_user():
     data = request.get_json()
     cpf = data.get('cpf')
@@ -20,36 +20,40 @@ def criar_user():
     estado = data.get('estado')
     cidade = data.get('cidade')
     senha = data.get('senha')
-        
 
-    user = UserService.create_user(cpf, nome, data_nascimento, telefone, email, cep, endereco, numero, complemento, bairro, estado, cidade, senha)
+    user = UserService.create_user(cpf, nome, data_nascimento, telefone, email,
+                                   cep, endereco, numero, complemento, bairro, estado, cidade, senha)
 
     if not user:
         return jsonify({"message": "Campos mal preenchidos"})
-        
-    else:
-        return({"message": "Usuário cadastrado com sucesso"})
-    
 
-@app.route('/user/<int:id>', methods = ['GET'])
+    else:
+        return ({"message": "Usuário cadastrado com sucesso"})
+
+
+@app.route('/user/<int:id>', methods=['GET'])
 def get(id):
     user = UserService.get_user(id)
 
     if user:
         return (jsonify({"Usuário encontrado": user}))
-    
+
     else:
         return jsonify({"Não foi possível encontrar o usuário"})
-    
+
 
 @app.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
-    email = data.get("email")
+    cpf = data.get("cpf")
     senha = data.get("senha")
 
-    user = UserService.login_user(email, senha)
-    
+    result = UserService.login_user(cpf, senha)
 
-    return jsonify({"message": user})
+    if result["success"]:
+        return jsonify({
+            "message": "Bem-vindo",
+            "user": result["user"]
+        }), 200
 
+    return jsonify({"error": result["error"]}), 401
