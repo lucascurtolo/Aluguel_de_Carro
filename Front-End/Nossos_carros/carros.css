@@ -1,3 +1,4 @@
+*{ padding: 0; margin: 0}
 header {
     background-color: #0DCEDA;
     width: 95%;
@@ -32,7 +33,7 @@ header {
     position: relative;
     border-right: 1px solid #000000;
     padding: 0 15px;
-    height: 70px;
+    height: 100px;
 }
 
 .info_do_logo li:last-child {
