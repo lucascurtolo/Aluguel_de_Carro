@@ -32,5 +32,33 @@
         </div>
     </header>
     
+    <div class="cadastro">
+        <h1>Cadastre seu Veículo</h1>
+    </div>
+
+    <hr>
+
+    <form id="cadastro_carro">
+        <h2>Informações do Veículo</h2>
+        <div class="info">
+            <input id="marca" type="text" placeholder="Marca">
+            <input id="modelo" type="text" placeholder="Modelo">
+            <input id="ano" type="number" placeholder="Ano">
+            <input id="placa" type="string" placeholder="Placa">
+            <input id="cor" type="text" placeholder="Cor">
+            <input id="categoria" type="text" placeholder="Categoria">
+            <input id="cambio" type="text" placeholder="Câmbio">
+            <input id="combustivel" type="text" placeholder="Combustível">
+            <input id="item" type="string" placeholder="Itens">  
+        </div>
+
+        <div class="foto" enctype="multipart/form-data">
+            <label for="upload">Foto do veículo:</label>
+            <input id="upload" type="file" name="foto" accept="image/*">
+        </div>
+
+        <button type="submit">Cadastrar</button>
+
+    </form>
 </body>
 </html>
