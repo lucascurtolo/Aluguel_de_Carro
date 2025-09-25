@@ -3,7 +3,7 @@ header {
     background-color: #0DCEDA;
     width: 95%;
     height: 100px;
-    padding: 0 50px;
+    padding: 0 48px;
 }
 
 .logo img {
@@ -20,6 +20,11 @@ header {
     
     
 }
+
+a{
+    font-family: "Montserrat", sans-serif;
+}
+
 
 .info_do_logo ul{
     position: absolute;

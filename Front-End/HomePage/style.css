@@ -3,7 +3,7 @@ header {
     background-color: #0DCEDA;
     width: 95%;
     height: 100px;
-    padding: 0 50px;
+    padding: 0 48px;
 }
 
 .logo img {
@@ -14,12 +14,13 @@ header {
 }
 
 .info_do_logo{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Montserrat", sans-serif;
     display: flex;
     justify-content: space-between;
     
     
 }
+
 
 .info_do_logo ul{
     position: absolute;
@@ -36,6 +37,9 @@ header {
     height: 100px;
 }
 
+a{
+    font-family: "Montserrat", sans-serif;
+}
 .info_do_logo li:last-child {
     border-right: none;
 }
@@ -74,12 +78,17 @@ header {
 
 }
 
+a{
+    font-family: "Montserrat", sans-serif;
+}
+
 .botão{
     align-items: center;
     text-align: center;
+
 }
 .botão a{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-decoration: none;
     color: #000000;
     display: inline-block;
@@ -162,7 +171,7 @@ hr{
     text-align: center;
 }
 .botao_aluga a{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-decoration: none;
     color: #000000;
     display: inline-block;
@@ -181,20 +190,24 @@ hr{
     border-radius: 10px;
     margin-left: 165px;
     margin-top: 60px;
+    padding: 20px;
 
 }
 
 *{ padding: 0; margin: 0}
 footer {
+    display: flex;
     background-color: #0DCEDA;
-    width: 95%;
-    height: 100px;
+    height: 50px;
     padding: 0 50px;
 }
 
 footer p {
-    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    font-family: "Montserrat", sans-serif;
     font-size: 20px;
     font-weight: bold;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    
 }

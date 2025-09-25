@@ -21,6 +21,10 @@ header {
     
 }
 
+a{
+    font-family: "Montserrat", sans-serif;
+}
+
 .info_do_logo ul{
     position: absolute;
     right: 0;
