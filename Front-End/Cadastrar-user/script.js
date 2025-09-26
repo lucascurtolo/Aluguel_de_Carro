@@ -1,5 +1,5 @@
 document.getElementById("cadastro_form").addEventListener("submit", async function (event) {
-    event.preventDefault(); // evita recarregar a página
+    event.preventDefault(); 
 
 
     const data = {

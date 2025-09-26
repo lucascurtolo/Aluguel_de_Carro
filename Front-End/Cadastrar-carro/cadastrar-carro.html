@@ -6,7 +6,7 @@
     <title>Cadastrar Carro - Alugaê</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='cadastrar-carro.css'>
-    <script src='main.js'></script>
+    <script defer src='cadastrar-carro.js'></script>
 </head>
 <link rel="icon" type="image/png" href="img/Logo site alugaê.png">
 
@@ -19,18 +19,11 @@
         <div class="info_do_logo">
             <nav>
                 <ul>
-                    <li>
-                        <a href="../HomePage/Contatos.html">Contatos</a>
-                    </li>
-                    <li>
-                        <a>Minhas Reservas</a>  
-                    </li>
-                    <li>
-                        <a>Entrar</a>
-                    </li>
+                    <li><a href="../HomePage/Contatos.html">Contatos</a></li>
+                    <li><a>Minhas Reservas</a></li>
+                    <li><a>Entrar</a></li>
                 </ul>
             </nav>
-
         </div>
     </header>
     
@@ -40,27 +33,27 @@
 
     <hr>
 
-    <form id="cadastro_carro">
+    <!-- enctype correto para envio de arquivos -->
+    <form id="cadastro_carro" enctype="multipart/form-data">
         <h2>Informações do Veículo</h2>
         <div class="info">
-            <input id="marca" type="text" placeholder="Marca">
-            <input id="modelo" type="text" placeholder="Modelo">
-            <input id="ano" type="number" placeholder="Ano">
-            <input id="placa" type="string" placeholder="Placa">
-            <input id="cor" type="text" placeholder="Cor">
-            <input id="categoria" type="text" placeholder="Categoria">
-            <input id="cambio" type="text" placeholder="Câmbio">
-            <input id="combustivel" type="text" placeholder="Combustível">
-            <input id="item" type="string" placeholder="Itens">  
+            <input id="marca" name="marca" type="text" placeholder="Marca" required>
+            <input id="modelo" name="modelo" type="text" placeholder="Modelo" required>
+            <input id="ano" name="ano" type="number" placeholder="Ano" required>
+            <input id="placa" name="placa" type="text" placeholder="Placa" required>
+            <input id="cor" name="cor" type="text" placeholder="Cor" required>
+            <input id="categoria" name="categoria" type="text" placeholder="Categoria" required>
+            <input id="cambio" name="cambio" type="text" placeholder="Câmbio" required>
+            <input id="combustivel" name="combustivel" type="text" placeholder="Combustível" required>
+            <input id="item" name="item" type="text" placeholder="Itens">
         </div>
 
-        <div class="foto" enctype="multipart/form-data">
+        <div class="foto">
             <label for="upload">Foto do veículo:</label>
-            <input id="upload" type="file" name="foto" accept="image/*">
+            <input id="upload" name="foto" type="file" accept="image/*" required>
         </div>
 
         <button type="submit">Cadastrar</button>
-
     </form>
 </body>
 </html>
