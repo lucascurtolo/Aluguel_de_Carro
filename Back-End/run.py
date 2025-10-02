@@ -1,5 +1,5 @@
 # run.py
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_cors import CORS
 from config.database import init_db, db
 from model.user import Usuario
@@ -18,6 +18,10 @@ def create_app():
     with app.app_context():
         db.drop_all()   
         db.create_all()
+
+    @app.route('/uploads/<filename>')
+    def uploaded_file(filename):
+        return send_from_directory('uploads', filename)
     
     return app
 
