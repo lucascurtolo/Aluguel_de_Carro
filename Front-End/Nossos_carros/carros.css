@@ -59,3 +59,19 @@ a{
 .info_do_logo a:hover {
     color: #ffffff;
 }
+
+.titulo{
+    font-family: "Montserrat", sans-serif;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.titulo h1{
+    font-weight: bold;
+    font-size: 50px;
+    margin-bottom: 5px;
+}
+
+.titulo h2{
+    font-size: 20px;
+}
