@@ -53,11 +53,42 @@ function exibirDetalhes(carro) {
                 <p><strong>Combustível:</strong> ${carro.combustivel}</p>
                 <p><strong>Itens:</strong> ${carro.itens}</p>
                 
-                <button class="btn-alugar-grande">Confirmar Aluguel</button>
+                <button id="btn-confirmar-aluguel" class="btn-alugar-grande">Confirmar Aluguel</button>
             </div>
         </div>
     `;
+
+    // 🔹 Agora o botão existe, então adicionamos o event listener aqui dentro
+    document.getElementById('btn-confirmar-aluguel').addEventListener('click', async () => {
+        try {
+            const usuario_id = 1; // ID do usuário logado
+            const dias = 3;       // Quantos dias alugar
+
+            const response = await fetch('http://localhost:5000/alugar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    usuario_id,
+                    carro_id: carro.id,
+                    dias
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(`✅ ${data.mensagem}\nTotal: R$ ${data.valor_total}`);
+            } else {
+                alert(`❌ ${data.erro}`);
+            }
+        } catch (error) {
+            console.error('Erro ao alugar carro:', error);
+            alert('Erro ao tentar alugar o carro.');
+        }
+    });
 }
 
-// Carrega quando a página abrir
+
+
+// Carrega detalhes quando a página abrir
 window.onload = carregarDetalhes;

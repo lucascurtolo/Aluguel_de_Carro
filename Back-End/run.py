@@ -4,6 +4,7 @@ from flask_cors import CORS
 from config.database import init_db, db
 from model.user import Usuario
 from model.car import Carro
+from model.aluguel import Aluguel
 
 def create_app():
     app = Flask(__name__)
