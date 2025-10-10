@@ -135,3 +135,139 @@ hr{
 .container-detalhes button:hover{
     background: #0097a7;
 }
+
+
+/* Estilo para o preço em destaque */
+.preco-destaque {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    
+}
+
+.preco-diaria {
+    margin-bottom: 15px;
+    
+}
+
+.preco-diaria .valor {
+    font-size: 36px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.preco-diaria .periodo {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-left: 5px;
+}
+
+/* 🔹 Seletor de dias */
+.seletor-dias {
+    margin: 20px 0;
+}
+
+.seletor-dias label {
+    display: block;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+    opacity: 0.95;
+    
+}
+
+.controle-dias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-quantidade {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-quantidade:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.btn-quantidade:active {
+    transform: scale(0.95);
+}
+
+#dias-aluguel {
+    width: 80px;
+    height: 45px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border-radius: 8px;
+    outline: none;
+}
+
+#dias-aluguel:focus {
+    border-color: white;
+}
+
+/* Remove as setas do input number */
+#dias-aluguel::-webkit-inner-spin-button,
+#dias-aluguel::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.calculo-dias {
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.calculo-dias strong {
+    font-size: 20px;
+}
+
+.btn-alugar-grande {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-alugar-grande:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-alugar-grande:active {
+    transform: translateY(0);
+}
