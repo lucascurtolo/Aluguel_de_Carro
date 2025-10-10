@@ -9,7 +9,6 @@ UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)  
 
 
-
 @app.route('/car', methods=['POST'])
 def post_carro():
     marca = request.form.get("marca")
