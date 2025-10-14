@@ -171,10 +171,17 @@ function exibirDetalhes(carro) {
             
             console.log('📦 Dados da resposta:', data); // DEBUG
 
+            // if (response.ok) {
+            //     alert(`✅ ${data.mensagem}\nDias: ${dias}\nTotal: R$ ${data.valor_total}`);
+            // } else {
+            //     alert(`❌ ${data.erro}`);
+            // }
             if (response.ok) {
-                alert(`✅ ${data.mensagem}\nDias: ${dias}\nTotal: R$ ${data.valor_total}`);
+                alert('✅ Carro alugado com sucesso!');
+            } else if (response.status === 400) {
+                alert('❌ Carro já alugado!');
             } else {
-                alert(`❌ ${data.erro}`);
+                alert('⚠️ Ocorreu um erro ao tentar alugar o carro.');
             }
         } catch (error) {
             console.error('❌ ERRO COMPLETO:', error); // DEBUG
