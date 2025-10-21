@@ -1,17 +1,3 @@
-// detalhes.js
-
-const precosCarros = {
-    'Gol': { diaria: 89.90, categoria: 'Econômico' },
-    'Onix': { diaria: 95.00, categoria: 'Econômico' },
-    'HB20': { diaria: 99.90, categoria: 'Econômico' },
-    'Civic': { diaria: 189.90, categoria: 'Executivo' },
-    'Corolla': { diaria: 199.90, categoria: 'Executivo' },
-    'Kicks': { diaria: 149.90, categoria: 'SUV' },
-    'Compass': { diaria: 229.90, categoria: 'SUV' },
-    'Tucson': { diaria: 219.90, categoria: 'SUV' },
-    'Cruze': { diaria: 169.90, categoria: 'Executivo' }
-};
-
 async function carregarDetalhes() {
     const urlParams = new URLSearchParams(window.location.search);
     const idCarro = urlParams.get('id');
@@ -47,11 +33,11 @@ async function carregarDetalhes() {
 function exibirDetalhes(carro) {
     const container = document.getElementById('carro-detalhes');
     
-    const precoCarro = precosCarros[carro.modelo] || { diaria: 0, categoria: 'N/A' };
+    const precoPorDia = carro.preco_por_dia || 0;
     const diasPadrao = 1;
-    const valorTotal = precoCarro.diaria * diasPadrao;
+    const valorTotal = precoPorDia * diasPadrao;
     
-    console.log('💰 Preço encontrado:', precoCarro); // DEBUG
+    console.log('💰 Preço do carro vindo do backend:', precoPorDia); // DEBUG
     
     let imagensHTML = '';
     carro.imagens.forEach(img => {
@@ -69,7 +55,7 @@ function exibirDetalhes(carro) {
                 
                 <div class="preco-destaque">
                     <div class="preco-diaria">
-                        <span class="valor">R$ ${precoCarro.diaria.toFixed(2)}</span>
+                        <span class="valor">R$ ${precoPorDia.toFixed(2)}</span>
                         <span class="periodo">/diária</span>
                     </div>
                     
@@ -102,28 +88,22 @@ function exibirDetalhes(carro) {
         </div>
     `;
 
-    // Elementos para controlar os dias
     const inputDias = document.getElementById('dias-aluguel');
     const btnMenos = document.getElementById('btn-menos');
     const btnMais = document.getElementById('btn-mais');
     const textoTotal = document.getElementById('texto-total');
     const btnConfirmar = document.getElementById('btn-confirmar-aluguel');
 
-    console.log('🔘 Botão encontrado:', btnConfirmar); // DEBUG
-
-    // Função para atualizar o valor total
     function atualizarTotal() {
         const dias = parseInt(inputDias.value) || 1;
-        const total = precoCarro.diaria * dias;
+        const total = precoPorDia * dias;
         const textoPlural = dias === 1 ? 'diária' : 'diárias';
         
         textoTotal.innerHTML = `${dias} ${textoPlural} = <strong>R$ ${total.toFixed(2)}</strong>`;
         btnConfirmar.textContent = `Confirmar Aluguel - R$ ${total.toFixed(2)}`;
     }
 
-    // Eventos dos botões + e -
     btnMenos.addEventListener('click', () => {
-        console.log('➖ Clicou em menos');
         if (inputDias.value > 1) {
             inputDias.value = parseInt(inputDias.value) - 1;
             atualizarTotal();
@@ -131,29 +111,21 @@ function exibirDetalhes(carro) {
     });
 
     btnMais.addEventListener('click', () => {
-        console.log('➕ Clicou em mais');
         inputDias.value = parseInt(inputDias.value) + 1;
         atualizarTotal();
     });
 
     inputDias.addEventListener('input', atualizarTotal);
 
-    // Botão de confirmar aluguel
     btnConfirmar.addEventListener('click', async () => {
-        console.log('🎯 BOTÃO CLICADO!'); // DEBUG CRÍTICO
-        
         try {
             const usuario_id = 1;
             const dias = parseInt(inputDias.value) || 1;
-
-            console.log('📝 Dados do aluguel:', { usuario_id, carro_id: carro.id, dias }); // DEBUG
 
             if (dias < 1) {
                 alert('⚠️ Selecione pelo menos 1 dia de aluguel.');
                 return;
             }
-
-            console.log('🌐 Enviando requisição...'); // DEBUG
 
             const response = await fetch('http://localhost:5000/alugar', {
                 method: 'POST',
@@ -165,26 +137,17 @@ function exibirDetalhes(carro) {
                 })
             });
 
-            console.log('📨 Resposta recebida:', response.status); // DEBUG
-
             const data = await response.json();
             
-            console.log('📦 Dados da resposta:', data); // DEBUG
-
-            // if (response.ok) {
-            //     alert(`✅ ${data.mensagem}\nDias: ${dias}\nTotal: R$ ${data.valor_total}`);
-            // } else {
-            //     alert(`❌ ${data.erro}`);
-            // }
             if (response.ok) {
-                alert('✅ Carro alugado com sucesso!');
+                alert(`✅ Carro alugado com sucesso!\nTotal: R$ ${(precoPorDia * dias).toFixed(2)}`);
             } else if (response.status === 400) {
                 alert('❌ Carro já alugado!');
             } else {
                 alert('⚠️ Ocorreu um erro ao tentar alugar o carro.');
             }
         } catch (error) {
-            console.error('❌ ERRO COMPLETO:', error); // DEBUG
+            console.error('❌ ERRO COMPLETO:', error);
             alert('Erro ao tentar alugar o carro: ' + error.message);
         }
     });
