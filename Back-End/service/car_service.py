@@ -9,7 +9,7 @@ from datetime import datetime
 class Carservice:
 
     # ------------------ CADASTRAR ------------------
-    def cadastra_carro(marca, modelo, ano, placa, cor, categoria, cambio, combustivel, itens, imagens):
+    def cadastra_carro(marca, modelo, ano, placa, cor, categoria, cambio, combustivel, itens, imagens, preco_por_dia):
         imagens_como_string = json.dumps(imagens)
 
         new_car = CarDomain(
@@ -28,7 +28,8 @@ class Carservice:
             combustivel=new_car.combustivel,
             itens=new_car.itens,
             imagens=new_car.imagens,
-            disponivel=True  # adiciona essa coluna no seu model
+            disponivel=True,  # adiciona essa coluna no seu model
+            preco_por_dia=preco_por_dia
         )
 
         db.session.add(car)

@@ -20,6 +20,7 @@ def post_carro():
     cambio = request.form.get("cambio")
     combustivel = request.form.get("combustivel")
     itens = request.form.get("itens") or ""
+    preco_por_dia = float(request.form.get("preco_por_dia") or 0.0)
 
     imagens = request.files.getlist("foto")
     caminhos_imagens = []
@@ -30,7 +31,7 @@ def post_carro():
             caminhos_imagens.append(caminho)
 
     carro = Carservice.cadastra_carro(
-        marca, modelo, ano, placa, cor, categoria, cambio, combustivel, itens, caminhos_imagens
+        marca, modelo, ano, placa, cor, categoria, cambio, combustivel, itens, caminhos_imagens, preco_por_dia
     )
 
     if carro:

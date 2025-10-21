@@ -17,6 +17,7 @@ class Carro(db.Model):
     itens = db.Column(db.String(200), nullable=False)
     imagens = db.Column(db.Text, nullable=True)
     disponivel = db.Column(db.Boolean, default=True)
+    preco_por_dia = db.Column(db.Float, nullable=False, default=0.0)
 
     def to_dict_car(self):
         return {
@@ -31,5 +32,6 @@ class Carro(db.Model):
             "combustivel": self.combustivel,
             "itens": self.itens,
             "imagens": json.loads(self.imagens) if self.imagens else [],
-            "disponivel": self.disponivel
+            "disponivel": self.disponivel,
+            "preco_por_dia": self.preco_por_dia
         }
