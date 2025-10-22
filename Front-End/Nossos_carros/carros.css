@@ -112,12 +112,115 @@ a{
     margin-bottom: 8px;
 }
 
-.btn-alugar {
+
+
+.card-carro {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.card-carro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Carro indisponível fica com opacidade reduzida */
+.carro-indisponivel {
+    opacity: 0.7;
+    filter: grayscale(30%);
+}
+
+/* Badge de status no canto superior direito */
+.status-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Bolinha indicadora */
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.status-indicator.disponivel {
+    background-color: #22c55e; /* Verde */
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.status-indicator.indisponivel {
+    background-color: #ef4444; /* Vermelho */
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+    animation: none; /* Remove a pulsação quando indisponível */
+}
+
+/* Animação de pulsação para a bolinha verde */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.status-texto {
+    color: #1f2937;
+}
+
+.btn-detalhes {
     background: #00bcd4;
     color: white;
     border: none;
     padding: 10px 30px;
-    border-radius: 25px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-detalhes:hover {
+    background: #0097a7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Botão desabilitado */
+.btn-detalhes:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-detalhes:disabled:hover {
+    background-color: #9ca3af;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Mensagem quando não há carros */
+.sem-carros {
+    text-align: center;
+    padding: 40px;
+    color: #6b7280;
+    font-size: 18px;
 }
