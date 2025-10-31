@@ -218,6 +218,10 @@ footer {
   align-items: center;
   background-color: #0DCEDA;
   height: 50px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 footer p {
