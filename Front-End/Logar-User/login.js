@@ -23,7 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const result = await response.json();
 
             if (response.ok) {
-                alert(result.message);
+                // ✅ salva o ID do usuário logado no localStorage
+                if (result.user && result.user.id) {
+                    localStorage.setItem("usuario_id", result.user.id);
+                    console.log("Usuário logado, ID salvo:", result.user.id);
+                } else {
+                    console.warn("⚠️ Resposta do servidor não contém 'user.id':", result);
+                }
+
+                alert(result.message || "Login realizado com sucesso!");
                 window.location.href = "../HomePage/index.html";
             } else {
                 alert(result.error || "Falha no login");
