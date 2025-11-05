@@ -23,6 +23,7 @@ class Usuario(db.Model):
 
     def to_dict(self):
         return{
+        "id": self.id,    
         "cpf": self.cpf,
         "nome": self.nome,
         "data_nascimento": self.data_nascimento,

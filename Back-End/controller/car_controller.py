@@ -61,3 +61,28 @@ def alugar_carro():
 
     resposta, status = Carservice.alugar_carro(usuario_id, carro_id, dias)
     return jsonify(resposta), status
+
+
+@app.route("/meusalugueis", methods=["GET"])
+def meus_alugueis():
+    usuario_id = request.args.get("usuario_id")
+
+    if not usuario_id:
+        return jsonify({"erro": "É necessário informar o usuarioID na URL"}), 400
+
+    alugueis = Aluguel.query.filter_by(usuario_id=usuario_id).all()
+    if not alugueis:
+        return jsonify([]), 200
+
+    resultado = []
+    for aluguel in alugueis:
+        carro = Carro.query.get(aluguel.carro_id)
+        if carro:
+            carro_dict = carro.to_dict_car()
+            carro_dict["data_inicio"] = aluguel.data_inicio.strftime("%Y-%m-%d") if aluguel.data_inicio else None
+            carro_dict["data_fim"] = aluguel.data_fim.strftime("%Y-%m-%d") if aluguel.data_fim else None
+            carro_dict["status"] = aluguel.status
+            carro_dict["valor_total"] = aluguel.valor_total
+            resultado.append(carro_dict)
+
+    return jsonify(resultado), 200

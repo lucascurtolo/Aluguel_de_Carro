@@ -3,7 +3,7 @@ from model.car import Carro
 from model.aluguel import Aluguel  # precisa criar esse model
 from config.database import db
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class Carservice:
@@ -52,13 +52,15 @@ class Carservice:
         if not car.disponivel:
             return {"erro": "Carro já alugado"}, 400
 
-        # Supondo que Carro tenha preco_por_dia (adicione se não tiver)
-        valor_total = getattr(car, "preco_por_dia", 100) * dias  # valor padrão se não tiver
+        valor_total = getattr(car, "preco_por_dia", 100) * dias
+        data_inicio = datetime.utcnow()
+        data_fim = data_inicio + timedelta(days=dias)
 
         aluguel = Aluguel(
             usuario_id=usuario_id,
             carro_id=carro_id,
-            data_inicio=datetime.utcnow(),
+            data_inicio=data_inicio,
+            data_fim=data_fim,
             valor_total=valor_total,
             status="ativo"
         )
@@ -70,7 +72,9 @@ class Carservice:
         return {
             "mensagem": "Carro alugado com sucesso!",
             "valor_total": valor_total,
-            "carro": car.modelo
+            "carro": car.modelo,
+            "data_inicio": data_inicio.strftime("%Y-%m-%d"),
+            "data_fim": data_fim.strftime("%Y-%m-%d")
         }, 201
 
 
