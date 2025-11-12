@@ -1,57 +1,47 @@
-/* Reset global */
+/* ===== Reset global ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Header */
+/* ===== Header ===== */
 header {
   background-color: #0DCEDA;
   margin: 0 auto;
   display: flex;  
   justify-content: space-between;
   align-items: center;
-  
 }
-
 
 img {
   height: 100px;
   width: auto;
   display: flex;
-
-  
 }
 
-.wrapper{
-    display: flex;
-    flex-direction: column;
-    
+.wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
-
-a{
-    font-family: "Montserrat", sans-serif;
-    text-align: center;
-    text-decoration: none;
+a {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  text-decoration: none;
 }
-
-
-
 
 .logo img {
-    height: 100px;
-    width: auto;
-    display: flex;
+  height: 100px;
+  width: auto;
+  display: flex;
 }
 
-/* Menu principal */    
+/* ===== Menu principal ===== */
 .info_do_logo nav ul {
   list-style: none;
   display: flex;
   align-items: center;
-  
 }
 
 .info_do_logo li {
@@ -83,21 +73,20 @@ a{
   color: #fff;
 }
 
-/* Dropdown */
+/* ===== Dropdown ===== */
 .menu {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.menu  h4{
+.menu h4 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 40px;
   font-family: "Montserrat", sans-serif;
 }
-
 
 .descer {
   flex-direction: column;
@@ -142,76 +131,128 @@ a{
   visibility: visible;
 }
 
-.titulo{
-    font-family: "Montserrat", sans-serif;
-    margin-top: 25px;
-    text-align: center;
+/* ===== Título ===== */
+.titulo {
+  font-family: "Montserrat", sans-serif;
+  margin-top: 25px;
+  text-align: center;
 }
 
-.titulo h1{
-    font-weight: bold;
-    font-size: 50px;
-    margin-bottom: 5px;
+.titulo h1 {
+  font-weight: bold;
+  font-size: 50px;
+  margin-bottom: 5px;
 }
 
+/* ===== Cards de carros ===== */
 .carros-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .card-carro {
-    background: #f0f8ff;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-}
-
-.card-carro img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.card-carro ul {
-    list-style: none;
-    padding: 15px 0;
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    
-    
-}
-
-.card-carro li{
-    margin-bottom: 8px;
-}
-
-
-
-.card-carro {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
+  background: #f0f8ff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
 
 .card-carro:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
-/* Carro indisponível fica com opacidade reduzida */
+.card-carro img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card-carro ul {
+  list-style: none;
+  padding: 15px 0;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-carro li {
+  margin-bottom: 8px;
+}
+
+/* ===== Carro indisponível ===== */
 .carro-indisponivel {
-    opacity: 0.7;
-    filter: grayscale(30%);
+  opacity: 0.7;
+  filter: grayscale(30%);
 }
 
-/* Footer */
+/* ===== Botões ===== */
+.botoes-card {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.btn-ver {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-ver:hover {
+  background-color: #0056b3;
+}
+
+.btn-devolver {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+.btn-devolver:hover {
+  background-color: #218838;
+}
+
+/* ===== Botão Devolvido (estilo cinza e desativado) ===== */
+.btn-devolvido {
+  background-color: #a9a9a9;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  cursor: not-allowed;
+  opacity: 0.8;
+  transition: all 0.3s;
+}
+
+.btn-devolvido:hover {
+  background-color: #a9a9a9;
+  opacity: 1;
+}
+
+/* ===== Footer ===== */
 footer {
   display: flex;
   justify-content: center;

@@ -10,7 +10,7 @@ async function carregarMinhasReservas() {
         }
 
         // 🔄 busca as reservas do usuário
-       const response = await fetch(`http://127.0.0.1:5000/meusalugueis?usuario_id=${usuario_id}`);
+        const response = await fetch(`http://127.0.0.1:5000/meusalugueis?usuario_id=${usuario_id}`);
 
         if (!response.ok) {
             throw new Error("Erro ao buscar suas reservas");
@@ -40,18 +40,63 @@ function exibirReservas(alugueis) {
             ? `http://localhost:5000/${aluguel.imagens[0]}`
             : "img/carro-placeholder.png";
 
+        // Se o aluguel estiver finalizado, mostra “Devolvido” em vez do botão
+        const botao = aluguel.status === "finalizado"
+            ? `<button class="btn-devolvido" disabled>Devolvido</button>`
+            : `<button class="btn-devolver" onclick="devolverCarro(${aluguel.id})">Devolver</button>`;
+
         return `
-            <div class="card-carro">
+            <div class="card-carro" id="card-${aluguel.id}">
                 <img src="${primeiraImagem}" alt="${aluguel.marca} ${aluguel.modelo}" class="imagem-carro">
                 <div class="info-carro">
                     <h3>${aluguel.marca} ${aluguel.modelo}</h3>
                     <p><strong>Ano:</strong> ${aluguel.ano}</p>
                     <p><strong>Período:</strong> ${aluguel.data_inicio} até ${aluguel.data_fim}</p>
                     <p><strong>Preço por dia:</strong> R$ ${aluguel.preco_por_dia.toFixed(2)}</p>
+                    ${botao}
                 </div>
             </div>
         `;
     }).join("");
+}
+
+// 🆕 Função atualizada
+async function devolverCarro(aluguelId) {
+    try {
+        const response = await fetch(`http://127.0.0.1:5000/devolver/${aluguelId}`, {
+            method: "PUT",
+        });
+
+        const resultado = await response.json();
+
+        if (!response.ok) {
+            alert(resultado.erro || "Erro ao devolver o carro");
+            return;
+        }
+
+        alert(resultado.mensagem || "Carro devolvido com sucesso!");
+
+        // 🧩 Atualiza o botão para "Devolvido" sem recarregar
+        const card = document.querySelector(`#card-${aluguelId}`);
+        if (card) {
+            const botao = card.querySelector("button");
+            if (botao) {
+                botao.textContent = "Devolvido";
+                botao.classList.remove("primary", "btn-devolver");
+                botao.classList.add("btn-devolvido");
+                botao.disabled = true;
+            }
+        }
+
+        // Remove o carro da página "Minhas Reservas"
+        setTimeout(() => {
+            card.remove();
+        }, 1000);
+
+    } catch (erro) {
+        console.error("❌ Erro ao devolver carro:", erro);
+        alert("Erro ao devolver o carro.");
+    }
 }
 
 // 🔄 chama a função quando a página abre
