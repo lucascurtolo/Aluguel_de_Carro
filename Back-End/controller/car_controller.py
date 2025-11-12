@@ -86,3 +86,8 @@ def meus_alugueis():
             resultado.append(carro_dict)
 
     return jsonify(resultado), 200
+
+@app.route("/devolver/<int:aluguel_id>", methods=["PUT"])
+def devolver_carro(aluguel_id):
+    resultado, status = Carservice.devolver_carro(aluguel_id)
+    return jsonify(resultado), status

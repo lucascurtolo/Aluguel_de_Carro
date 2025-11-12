@@ -1,6 +1,6 @@
 from domain.car_domain import CarDomain
 from model.car import Carro
-from model.aluguel import Aluguel  # precisa criar esse model
+from model.aluguel import Aluguel
 from config.database import db
 import json
 from datetime import datetime, timedelta
@@ -28,7 +28,7 @@ class Carservice:
             combustivel=new_car.combustivel,
             itens=new_car.itens,
             imagens=new_car.imagens,
-            disponivel=True,  # adiciona essa coluna no seu model
+            disponivel=True,
             preco_por_dia=preco_por_dia
         )
 
@@ -56,6 +56,7 @@ class Carservice:
         data_inicio = datetime.utcnow()
         data_fim = data_inicio + timedelta(days=dias)
 
+        # ✅ Cria um novo aluguel toda vez
         aluguel = Aluguel(
             usuario_id=usuario_id,
             carro_id=carro_id,
@@ -71,6 +72,7 @@ class Carservice:
 
         return {
             "mensagem": "Carro alugado com sucesso!",
+            "aluguel_id": aluguel.id,  # 🔑 retorna o ID correto
             "valor_total": valor_total,
             "carro": car.modelo,
             "data_inicio": data_inicio.strftime("%Y-%m-%d"),
@@ -85,15 +87,20 @@ class Carservice:
         if not aluguel:
             return {"erro": "Aluguel não encontrado"}, 404
 
-        if aluguel.status != "ativo":
-            return {"erro": "Este aluguel já foi finalizado"}, 400
+        # ⚠️ REMOVE o bloqueio que impedia devolução após novo aluguel
+        if aluguel.status == "finalizado":
+            return {"erro": "Este aluguel já foi devolvido"}, 400
+
+        car = Carro.query.filter_by(id=aluguel.carro_id).first()
+        if not car:
+            return {"erro": "Carro não encontrado"}, 404
 
         aluguel.status = "finalizado"
         aluguel.data_fim = datetime.utcnow()
 
-        car = Carro.query.filter_by(id=aluguel.carro_id).first()
+        # ✅ Libera o carro para um novo aluguel
         car.disponivel = True
 
         db.session.commit()
 
-        return {"mensagem": "Carro devolvido com sucesso!"}, 200
+        return {"mensagem": "Carro devolvido e disponível novamente!"}, 200
