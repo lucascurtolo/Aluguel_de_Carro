@@ -144,7 +144,8 @@ a{
 
 /* Introduções */
 .introducao,
-.introducao2 {
+.introducao2,
+.introducao3 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 50px;
   color: #0DCEDA;
@@ -154,13 +155,15 @@ a{
 
 /* Botões */
 .botao,
-.botao_aluga {
+.botao_aluga,
+.botao_dash {
   text-align: center;
   margin-top: 20px;
 }
 
 .botao a,
-.botao_aluga a {
+.botao_aluga a,
+.botao_dash a {
   font-family: "Montserrat", sans-serif;
   text-decoration: none;
   color: #000;
@@ -174,9 +177,14 @@ a{
 }
 
 .botao a:hover,
-.botao_aluga a:hover {
+.botao_aluga a:hover,
+.botao_dash a:hover {
   background-color: #0ba8b5;
   color: #fff;
+}
+
+.botao_dash{
+  margin-bottom: 50px;
 }
 
 /* Imagens */
