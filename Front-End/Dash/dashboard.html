@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Aluguel de Carros</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="../HomePage/index.html">
+                <img src="./img/Logo site alugaê.png" alt="Alugaê">
+            </a>
+        </div>
+
+        <nav class="menu">
+            <a href="../HomePage/Contatos.html">Contatos</a>
+            <a href="../MinhasReservas/Minhas_Reservas.html">Minhas Reservas</a>
+            <a href="../Nossos_carros/nossos_carros.html">Nossos Carros</a>
+        </nav>
+    </header>
+
+    <h1>Dashboard - Sistema de Aluguel de Carros</h1>
+
+    <!-- CARDS -->
+    <div class="cards">
+        <div class="card">
+            <h3>Carros Disponíveis</h3>
+            <span id="numDispo">0</span>
+        </div>
+
+        <div class="card">
+            <h3>Carros Alugados</h3>
+            <span id="numAlugados">0</span>
+        </div>
+
+        <div class="card">
+            <h3>Carros Devolvidos</h3>
+            <span id="numDevolvidos">0</span>
+        </div>
+    </div>
+
+    <!-- GRÁFICO -->
+    <canvas id="graficoStatus" width="400" height="200"></canvas>
+
+    <!-- JS -->
+    <script src="dashboard.js"></script>
+
+    <footer>
+        <p>2025, Alugaê</p>
+    </footer>
+
+</body>
+</html>
