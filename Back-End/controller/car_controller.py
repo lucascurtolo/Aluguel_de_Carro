@@ -69,16 +69,19 @@ def meus_alugueis():
 
     if not usuario_id:
         return jsonify({"erro": "É necessário informar o usuarioID na URL"}), 400
+    
+    alugueis = Aluguel.query.filter_by(usuario_id=usuario_id, status="ativo").all()
 
-    alugueis = Aluguel.query.filter_by(usuario_id=usuario_id).all()
-    if not alugueis:
-        return jsonify([]), 200
+    # alugueis = Aluguel.query.filter_by(usuario_id=usuario_id).all()
+    # if not alugueis:
+    #     return jsonify([]), 200
 
     resultado = []
     for aluguel in alugueis:
         carro = Carro.query.get(aluguel.carro_id)
         if carro:
             carro_dict = carro.to_dict_car()
+            carro_dict["aluguel_id"] = aluguel.id
             carro_dict["data_inicio"] = aluguel.data_inicio.strftime("%Y-%m-%d") if aluguel.data_inicio else None
             carro_dict["data_fim"] = aluguel.data_fim.strftime("%Y-%m-%d") if aluguel.data_fim else None
             carro_dict["status"] = aluguel.status
