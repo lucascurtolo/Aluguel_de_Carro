@@ -30,10 +30,17 @@ async function carregarMinhasReservas() {
 function exibirReservas(alugueis) {
     const container = document.getElementById("lista-carros");
 
-    if (!alugueis || alugueis.length === 0) {
-        container.innerHTML = `<p class="sem-carros">Você ainda não fez nenhuma reserva.</p>`;
+    const reservasAtivas = alugueis.filter(aluguel => aluguel.status === "ativo");
+
+    if (!reservasAtivas || reservasAtivas.length === 0) {
+        container.innerHTML = `<p class="sem-carros">Você não tem reservas ativas.</p>`;
         return;
     }
+
+    // if (!alugueis || alugueis.length === 0) {
+    //     container.innerHTML = `<p class="sem-carros">Você ainda não fez nenhuma reserva.</p>`;
+    //     return;
+    // }
 
     container.innerHTML = alugueis.map(aluguel => {
         const primeiraImagem = aluguel.imagens && aluguel.imagens.length > 0
@@ -43,10 +50,10 @@ function exibirReservas(alugueis) {
         // Se o aluguel estiver finalizado, mostra “Devolvido” em vez do botão
         const botao = aluguel.status === "finalizado"
             ? `<button class="btn-devolvido" disabled>Devolvido</button>`
-            : `<button class="btn-devolver" onclick="devolverCarro(${aluguel.id})">Devolver</button>`;
+            : `<button class="btn-devolver" onclick="devolverCarro(${aluguel.aluguel_id})">Devolver</button>`;
 
         return `
-            <div class="card-carro" id="card-${aluguel.id}">
+            <div class="card-carro" id="card-${aluguel.aluguel_id}">
                 <img src="${primeiraImagem}" alt="${aluguel.marca} ${aluguel.modelo}" class="imagem-carro">
                 <div class="info-carro">
                     <h3>${aluguel.marca} ${aluguel.modelo}</h3>
