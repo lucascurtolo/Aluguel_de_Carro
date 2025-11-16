@@ -1,15 +1,14 @@
 async function carregarDashboard() {
-
     try {
         // Buscar carros
         const resCarros = await fetch("http://127.0.0.1:5000/allcars");
         const carros = await resCarros.json();
 
-        // Buscar alugueis
-        const resAlugueis = await fetch("http://127.0.0.1:5000/meusalugueis");
+        // Buscar alugueis (rota nova)
+        const resAlugueis = await fetch("http://127.0.0.1:5000/allalugueis");
         const alugueis = await resAlugueis.json();
 
-        const disponiveis = carros.filter(c => c.status === "disponivel").length;
+        const disponiveis = carros.filter(c => c.disponivel === true).length;
         const alugados = alugueis.filter(a => a.status === "ativo").length;
         const devolvidos = alugueis.filter(a => a.status === "finalizado").length;
 
@@ -31,9 +30,7 @@ async function carregarDashboard() {
             },
             options: {
                 responsive: true,
-                scales: {
-                    y: { beginAtZero: true }
-                }
+                scales: { y: { beginAtZero: true } }
             }
         });
 
