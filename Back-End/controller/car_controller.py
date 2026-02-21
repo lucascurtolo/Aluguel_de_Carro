@@ -112,3 +112,8 @@ def all_alugueis():
         })
 
     return jsonify(resultado), 200
+
+@app.route("/car/<int:carro_id>", methods=["DELETE"])
+def deletar_carro(carro_id):
+    resposta, status = Carservice.deletar_carro(carro_id)
+    return jsonify(resposta), status
