@@ -104,3 +104,20 @@ class Carservice:
         db.session.commit()
 
         return {"mensagem": "Carro devolvido e disponível novamente!"}, 200
+
+    @staticmethod
+    def deletar_carro(carro_id):
+        carro = Carro.query.get(carro_id)
+
+        if not carro:
+            return {"erro": "Carro não encontrado"}, 404
+
+        # Se quiser impedir exclusão se estiver alugado:
+        if not carro.disponivel:
+            return {"erro": "Carro está alugado e não pode ser excluído"}, 400
+
+        from run import db
+        db.session.delete(carro)
+        db.session.commit()
+
+        return {"message": "Carro excluído com sucesso"}, 200
