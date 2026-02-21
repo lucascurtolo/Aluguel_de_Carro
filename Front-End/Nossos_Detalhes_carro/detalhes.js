@@ -30,6 +30,33 @@ async function carregarDetalhes() {
     }
 }
 
+async function excluirCarro() {
+    const confirmar = confirm("Tem certeza que deseja excluir este carro?");
+    if (!confirmar) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const idCarro = urlParams.get('id');
+
+    try {
+        const response = await fetch(`http://localhost:5000/car/${idCarro}`, {
+            method: 'DELETE'
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("🚗 Carro excluído com sucesso!");
+            window.location.href = "../HomePage/index.html";
+        } else {
+            alert("❌ " + data.erro);
+        }
+
+    } catch (error) {
+        console.error("Erro:", error);
+        alert("Erro ao excluir o carro.");
+    }
+}
+
 function exibirDetalhes(carro) {
     const container = document.getElementById('carro-detalhes');
     
