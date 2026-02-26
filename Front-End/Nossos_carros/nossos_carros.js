@@ -12,6 +12,18 @@ async function carregarCarros() {
     }
 }
 
+async function pesquisarCarros() {
+    const termo = document.getElementById('input-busca').value;
+
+    try {
+        const response = await fetch(`http://localhost:5000/carros?busca=${termo}`);
+        const carros = await response.json();
+        exibirCarros(carros);
+    } catch (error) {
+        console.error('Erro ao pesquisar:', error);
+    }
+}
+
 function exibirCarros(carros) {
     const container = document.getElementById('lista-carros');
     

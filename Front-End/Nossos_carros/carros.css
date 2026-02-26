@@ -243,3 +243,23 @@ footer p {
   font-size: 20px;
   font-weight: bold;
 }
+
+.barra-pesquisa {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.barra-pesquisa input {
+    width: 420px;
+    padding: 14px 20px;
+    border-radius: 30px;
+    border: 2px solid #0DCEDA;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.barra-pesquisa input:focus {
+    box-shadow: 0 0 12px rgba(13, 206, 218, 0.4);
+}
