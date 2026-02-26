@@ -117,3 +117,14 @@ def all_alugueis():
 def deletar_carro(carro_id):
     resposta, status = Carservice.deletar_carro(carro_id)
     return jsonify(resposta), status
+
+@app.route("/carros", methods=["GET"])
+def buscar_carros():
+    termo = request.args.get("busca", "")
+
+    if termo:
+        carros = Carservice.pesquisar_carros(termo)
+    else:
+        carros = Carservice.listar_carros()
+
+    return jsonify([car.to_dict_car() for car in carros]), 200
