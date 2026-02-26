@@ -4,6 +4,7 @@ from model.aluguel import Aluguel
 from config.database import db
 import json
 from datetime import datetime, timedelta
+from sqlalchemy import or_
 
 
 class Carservice:
@@ -121,3 +122,12 @@ class Carservice:
         db.session.commit()
 
         return {"message": "Carro excluído com sucesso"}, 200
+
+    @staticmethod
+    def pesquisar_carros(termo):
+        return Carro.query.filter(
+            or_(
+                Carro.marca.ilike(f"%{termo}%"),
+                Carro.modelo.ilike(f"%{termo}%")
+            )
+        ).all()    
