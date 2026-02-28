@@ -120,11 +120,15 @@ def deletar_carro(carro_id):
 
 @app.route("/carros", methods=["GET"])
 def buscar_carros():
-    termo = request.args.get("busca", "")
 
-    if termo:
-        carros = Carservice.pesquisar_carros(termo)
-    else:
-        carros = Carservice.listar_carros()
+    termo = request.args.get("busca")
+    ano = request.args.get("ano")
+    ordem = request.args.get("ordem")
+
+    carros = Carservice.pesquisar_carros(
+        termo=termo,
+        ano=ano,
+        ordem=ordem
+    )
 
     return jsonify([car.to_dict_car() for car in carros]), 200
