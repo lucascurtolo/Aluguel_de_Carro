@@ -79,7 +79,29 @@ function exibirDetalhes(carro) {
         <div class="detalhes-carro">
             <div class="galeria-imagens">
                 ${imagensHTML}
+
+                <div class="avaliacao-box">
+                    <h3>Avaliação</h3>
+
+                    <div class="media-avaliacao">
+                        <span id="media-estrelas">☆☆☆☆☆</span>
+                        <span id="media-numero">(0.0)</span>
+                    </div>
+
+                    <div class="estrelas-selecao">
+                        <span onclick="selecionarNota(1)">★</span>
+                        <span onclick="selecionarNota(2)">★</span>
+                        <span onclick="selecionarNota(3)">★</span>
+                        <span onclick="selecionarNota(4)">★</span>
+                        <span onclick="selecionarNota(5)">★</span>
+                    </div>
+
+                    <button class="btn-enviar-avaliacao" onclick="enviarAvaliacao(${carro.id})">
+                        Enviar Avaliação
+                    </button>
             </div>
+
+        </div>
             
             <div class="info-carro">
                 <h2>
@@ -139,6 +161,7 @@ function exibirDetalhes(carro) {
         </div>
     `;
 
+    atualizarMedia(carro.id);                    
     if (carro.disponivel) {
         configurarControlesAluguel(carro, precoPorDia);
     }
@@ -213,6 +236,84 @@ function configurarControlesAluguel(carro, precoPorDia) {
             alert('Erro ao tentar alugar o carro: ' + error.message);
         }
     });
+}
+
+let notaSelecionada = 0;
+
+function selecionarNota(nota) {
+    notaSelecionada = nota;
+
+    const estrelas = document.querySelectorAll(".estrelas-selecao span");
+
+    estrelas.forEach((estrela, index) => {
+        if (index < nota) {
+            estrela.classList.add("ativa");
+        } else {
+            estrela.classList.remove("ativa");
+        }
+    });
+}
+
+async function enviarAvaliacao(carroId) {
+
+    if (notaSelecionada === 0) {
+        alert("Selecione uma nota!");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/avaliar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                usuario_id: 1,
+                nota: notaSelecionada,
+                carro_id: carroId
+            })
+        });
+
+        if (response.ok) {
+            alert("⭐ Avaliação enviada!");
+            notaSelecionada = 0;
+            atualizarMedia(carroId);
+        }
+
+    } catch (error) {
+        console.error("Erro ao enviar avaliação:", error);
+    }
+}
+
+async function atualizarMedia(carroId) {
+
+    try {
+        const response = await fetch(`http://127.0.0.1:5000/carros/${carroId}/media`);
+        const data = await response.json();
+
+        mostrarMedia(data.media);
+
+    } catch (error) {
+        console.error("Erro ao buscar média:", error);
+    }
+}
+
+function mostrarMedia(media) {
+
+    const estrelasContainer = document.getElementById("media-estrelas");
+    const numeroContainer = document.getElementById("media-numero");
+
+    estrelasContainer.innerHTML = "";
+
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.round(media)) {
+            estrelasContainer.innerHTML += "★";
+        } else {
+            estrelasContainer.innerHTML += "☆";
+        }
+    }
+
+    numeroContainer.innerHTML = `(${media.toFixed(1)})`;
 }
 
 // Atualiza os detalhes a cada 5 segundos para verificar disponibilidade
