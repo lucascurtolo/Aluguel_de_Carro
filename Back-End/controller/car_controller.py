@@ -132,3 +132,38 @@ def buscar_carros():
     )
 
     return jsonify([car.to_dict_car() for car in carros]), 200
+
+@app.route("/avaliar", methods=["POST"])
+def avaliar_carro():
+
+    data = request.get_json()
+
+    usuario_id = data.get("usuario_id")
+    carro_id = data.get("carro_id")
+    nota = data.get("nota")
+    comentario = data.get("comentario")
+
+    if not usuario_id or not carro_id or not nota:
+        return jsonify({"erro": "usuario_id, carro_id e nota são obrigatórios"}), 400
+
+    resposta, status = Carservice.avaliar_carro(
+        usuario_id,
+        carro_id,
+        int(nota),
+        comentario
+    )
+
+    return jsonify(resposta), status
+
+@app.route("/carros/<int:carro_id>/media", methods=["GET"])
+def obter_media(carro_id):
+
+    carro = Carro.query.get(carro_id)
+
+    if not carro:
+        return jsonify({"erro": "Carro não encontrado"}), 404
+
+    return jsonify({
+        "media": carro.media_avaliacao or 0,
+        "total": carro.total_avaliacoes or 0
+    }), 200
