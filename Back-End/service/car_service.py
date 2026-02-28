@@ -124,10 +124,27 @@ class Carservice:
         return {"message": "Carro excluído com sucesso"}, 200
 
     @staticmethod
-    def pesquisar_carros(termo):
-        return Carro.query.filter(
-            or_(
-                Carro.marca.ilike(f"%{termo}%"),
-                Carro.modelo.ilike(f"%{termo}%")
+    def pesquisar_carros(termo=None, ano=None, ordem=None):
+
+        query = Carro.query
+
+        # 🔎 Busca por marca ou modelo
+        if termo:
+            query = query.filter(
+                or_(
+                    Carro.marca.ilike(f"%{termo}%"),
+                    Carro.modelo.ilike(f"%{termo}%")
+                )
             )
-        ).all()    
+
+        # 📅 Filtro por ano
+        if ano:
+            query = query.filter(Carro.ano == int(ano))
+
+        # 💰 Ordenação por valor
+        if ordem == "menor":
+            query = query.order_by(Carro.preco_por_dia.asc())
+        elif ordem == "maior":
+            query = query.order_by(Carro.preco_por_dia.desc())
+
+        return query.all()    
