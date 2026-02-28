@@ -13,10 +13,19 @@ async function carregarCarros() {
 }
 
 async function pesquisarCarros() {
+
     const termo = document.getElementById('input-busca').value;
+    const ano = document.getElementById('filtro-ano').value;
+    const ordem = document.getElementById('ordenacao').value;
+
+    let url = `http://localhost:5000/carros?`;
+
+    if (termo) url += `busca=${termo}&`;
+    if (ano) url += `ano=${ano}&`;
+    if (ordem) url += `ordem=${ordem}`;
 
     try {
-        const response = await fetch(`http://localhost:5000/carros?busca=${termo}`);
+        const response = await fetch(url);
         const carros = await response.json();
         exibirCarros(carros);
     } catch (error) {
@@ -79,6 +88,7 @@ function verDetalhes(id) {
 }
 
 // Atualiza a lista de carros a cada 5 segundos
-setInterval(carregarCarros, 5000);
+//setInterval(carregarCarros, 5000);
+window.onload = carregarCarros;
 
 window.onload = carregarCarros;

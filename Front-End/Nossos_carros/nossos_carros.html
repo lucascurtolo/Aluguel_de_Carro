@@ -45,12 +45,32 @@
     </div>
 
     <div class="barra-pesquisa">
+
+    <!-- FILTRO ANO -->
+    <select id="filtro-ano" onchange="pesquisarCarros()">
+        <option value="">Ano</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+    </select>
+
+    <!-- BUSCA -->
     <input 
         type="text" 
         id="input-busca"
         placeholder="🔎 Buscar por marca ou modelo..."
         onkeyup="pesquisarCarros()"
     >
+
+    <!-- ORDENAR POR VALOR -->
+    <select id="ordenacao" onchange="pesquisarCarros()">
+        <option value="">Valor</option>
+        <option value="menor">Menor preço</option>
+        <option value="maior">Maior preço</option>
+    </select>
+
     </div>
 
     <div id="lista-carros" class="carros-grid">

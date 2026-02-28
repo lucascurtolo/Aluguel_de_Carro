@@ -247,11 +247,13 @@ footer p {
 .barra-pesquisa {
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 20px;
     margin: 30px 0;
 }
 
-.barra-pesquisa input {
-    width: 420px;
+.barra-pesquisa input,
+.barra-pesquisa select {
     padding: 14px 20px;
     border-radius: 30px;
     border: 2px solid #0DCEDA;
@@ -260,6 +262,11 @@ footer p {
     transition: all 0.3s ease;
 }
 
-.barra-pesquisa input:focus {
+.barra-pesquisa input {
+    width: 420px;
+}
+
+.barra-pesquisa input:focus,
+.barra-pesquisa select:focus {
     box-shadow: 0 0 12px rgba(13, 206, 218, 0.4);
 }
