@@ -5,6 +5,7 @@ from config.database import db
 import json
 from datetime import datetime, timedelta
 from sqlalchemy import or_
+from model.avaliacao import Avaliacao
 
 
 class Carservice:
@@ -148,3 +149,49 @@ class Carservice:
             query = query.order_by(Carro.preco_por_dia.desc())
 
         return query.all()    
+    
+    @staticmethod
+    def avaliar_carro(usuario_id, carro_id, nota, comentario=None):
+
+        carro = Carro.query.get(carro_id)
+
+        if not carro:
+            return {"erro": "Carro não encontrado"}, 404
+
+        if nota < 1 or nota > 5:
+            return {"erro": "Nota deve ser entre 1 e 5"}, 400
+        
+
+        # 🔒 Impede avaliar duas vezes
+        avaliacao_existente = Avaliacao.query.filter_by(
+            usuario_id=usuario_id,
+            carro_id=carro_id
+        ).first()
+
+        if avaliacao_existente:
+            return {"erro": "Você já avaliou este carro"}, 400
+
+        nova_avaliacao = Avaliacao(
+            usuario_id=usuario_id,
+            carro_id=carro_id,
+            nota=nota,
+            comentario=comentario
+        )
+
+        db.session.add(nova_avaliacao)
+
+        # ⭐ Atualiza média
+        total = carro.total_avaliacoes + 1
+        soma_notas = (carro.media_avaliacao * carro.total_avaliacoes) + nota
+        nova_media = soma_notas / total
+
+        carro.total_avaliacoes = total
+        carro.media_avaliacao = round(nova_media, 1)
+
+        db.session.commit()
+
+        return {
+            "mensagem": "Avaliação registrada com sucesso!",
+            "media_avaliacao": carro.media_avaliacao,
+            "total_avaliacoes": carro.total_avaliacoes
+        }, 201
