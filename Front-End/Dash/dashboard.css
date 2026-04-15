@@ -108,3 +108,19 @@ footer p {
   font-size: 20px;
   font-weight: bold;
 }
+
+.btn-excel {
+  display: block;
+  margin: 30px auto;
+  padding: 15px 30px;
+  font-size: 18px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-excel:hover {
+  background: #218838;
+}

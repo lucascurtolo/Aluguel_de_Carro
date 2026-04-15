@@ -39,4 +39,8 @@ async function carregarDashboard() {
     }
 }
 
+function baixarExcel() {
+    window.open("http://127.0.0.1:5000/exportar-excel", "_blank");
+}
+
 carregarDashboard();
