@@ -4,6 +4,8 @@ from service.car_service import Carservice
 from model.aluguel import Aluguel
 from run import app
 from flask import request, jsonify
+import pandas as pd
+from flask import send_file
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)  
@@ -167,3 +169,62 @@ def obter_media(carro_id):
         "media": carro.media_avaliacao or 0,
         "total": carro.total_avaliacoes or 0
     }), 200
+
+@app.route("/exportar-excel", methods=["GET"])
+def exportar_excel():
+
+    carros = Carro.query.all()
+    alugueis = Aluguel.query.all()
+
+    # ---------------- CARROS ----------------
+    dados_carros = []
+    for c in carros:
+        dados_carros.append({
+            "Marca": c.marca,
+            "Modelo": c.modelo,
+            "Ano": c.ano,
+            "Preço por dia": c.preco_por_dia,
+            "Disponível": "Sim" if c.disponivel else "Não"
+        })
+
+    df_carros = pd.DataFrame(dados_carros)
+
+    # ---------------- ALUGUÉIS ----------------
+    dados_alugueis = []
+    for a in alugueis:
+        dados_alugueis.append({
+            "Carro ID": a.carro_id,
+            "Usuário ID": a.usuario_id,
+            "Status": a.status,
+            "Data Início": str(a.data_inicio),
+            "Data Fim": str(a.data_fim),
+            "Valor Total": a.valor_total
+        })
+
+    df_alugueis = pd.DataFrame(dados_alugueis)
+
+    # ---------------- CRIAR EXCEL ----------------
+    caminho = "relatorio_alugae.xlsx"
+
+    with pd.ExcelWriter(caminho, engine="openpyxl") as writer:
+        df_carros.to_excel(writer, sheet_name="Carros", index=False)
+        df_alugueis.to_excel(writer, sheet_name="Alugueis", index=False)
+
+        # 🔥 AJUSTAR LARGURA AUTOMÁTICA
+        for sheet_name in writer.sheets:
+            sheet = writer.sheets[sheet_name]
+
+            for col in sheet.columns:
+                max_length = 0
+                col_letter = col[0].column_letter
+
+                for cell in col:
+                    try:
+                        if cell.value:
+                            max_length = max(max_length, len(str(cell.value)))
+                    except:
+                        pass
+
+                sheet.column_dimensions[col_letter].width = max_length + 2
+
+    return send_file(caminho, as_attachment=True)
