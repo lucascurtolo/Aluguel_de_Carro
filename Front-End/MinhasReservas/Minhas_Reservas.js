@@ -1,7 +1,8 @@
 async function carregarMinhasReservas() {
     try {
         // 🔑 pega o ID do usuário logado salvo no login
-        const usuario_id = localStorage.getItem("usuario_id");
+        const usuario_id = 1;
+        
 
         if (!usuario_id) {
             alert("Você precisa estar logado para ver suas reservas.");
@@ -42,7 +43,7 @@ function exibirReservas(alugueis) {
     //     return;
     // }
 
-    container.innerHTML = alugueis.map(aluguel => {
+    container.innerHTML = reservasAtivas.map(aluguel => {
         const primeiraImagem = aluguel.imagens && aluguel.imagens.length > 0
             ? `http://localhost:5000/${aluguel.imagens[0]}`
             : "img/carro-placeholder.png";
