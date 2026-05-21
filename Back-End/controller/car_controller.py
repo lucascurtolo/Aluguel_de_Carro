@@ -6,6 +6,8 @@ from run import app
 from flask import request, jsonify
 import pandas as pd
 from flask import send_file
+from openpyxl.chart import PieChart, Reference
+from openpyxl.chart.label import DataLabelList
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)  
@@ -173,11 +175,16 @@ def obter_media(carro_id):
 @app.route("/exportar-excel", methods=["GET"])
 def exportar_excel():
 
+    
+
     carros = Carro.query.all()
     alugueis = Aluguel.query.all()
 
-    # ---------------- CARROS ----------------
+    # =========================
+    # DADOS DOS CARROS
+    # =========================
     dados_carros = []
+
     for c in carros:
         dados_carros.append({
             "Marca": c.marca,
@@ -189,8 +196,11 @@ def exportar_excel():
 
     df_carros = pd.DataFrame(dados_carros)
 
-    # ---------------- ALUGUÉIS ----------------
+    # =========================
+    # DADOS DOS ALUGUÉIS
+    # =========================
     dados_alugueis = []
+
     for a in alugueis:
         dados_alugueis.append({
             "Carro ID": a.carro_id,
@@ -203,28 +213,115 @@ def exportar_excel():
 
     df_alugueis = pd.DataFrame(dados_alugueis)
 
-    # ---------------- CRIAR EXCEL ----------------
+    # =========================
+    # DADOS DO GRÁFICO
+    # =========================
+    disponiveis = len([c for c in carros if c.disponivel])
+    alugados = len([c for c in carros if not c.disponivel])
+
+    # =========================
+    # CRIAR EXCEL
+    # =========================
     caminho = "relatorio_alugae.xlsx"
 
     with pd.ExcelWriter(caminho, engine="openpyxl") as writer:
+
+        # =========================
+        # ABA 1 - CARROS
+        # =========================
         df_carros.to_excel(writer, sheet_name="Carros", index=False)
+
+        # =========================
+        # ABA 2 - ALUGUÉIS
+        # =========================
         df_alugueis.to_excel(writer, sheet_name="Alugueis", index=False)
 
-        # 🔥 AJUSTAR LARGURA AUTOMÁTICA
+        # =========================
+        # ABA 3 - GRÁFICOS
+        # =========================
+        wb = writer.book
+
+        ws_grafico = wb.create_sheet("Graficos")
+
+        # Título
+        ws_grafico.merge_cells("A1:B1")
+        ws_grafico["A1"] = "Dashboard do Sistema"
+
+        # Cabeçalhos
+        ws_grafico.append(["Status", "Quantidade"])
+
+        # Dados
+        ws_grafico.append(["Disponíveis", disponiveis])
+        ws_grafico.append(["Alugados", alugados])
+
+        # =========================
+        # CRIAR GRÁFICO PIZZA
+        # =========================
+        grafico = PieChart()
+
+        grafico.title = "Status dos Carros"
+
+        labels = Reference(
+            ws_grafico,
+            min_col=1,
+            min_row=3,
+            max_row=4
+        )
+
+        data = Reference(
+            ws_grafico,
+            min_col=2,
+            min_row=2,
+            max_row=4
+        )
+
+        grafico.add_data(data, titles_from_data=True)
+        grafico.set_categories(labels)
+
+        # Mostrar porcentagem
+        grafico.dataLabels = DataLabelList()
+        grafico.dataLabels.showPercent = True
+        grafico.dataLabels.showVal = False
+
+        # Tamanho
+        grafico.width = 12
+        grafico.height = 8
+
+        # Adiciona gráfico
+        ws_grafico.add_chart(grafico, "D3")
+
+        # =========================
+        # AJUSTAR LARGURA AUTOMÁTICA
+        # =========================
         for sheet_name in writer.sheets:
+
             sheet = writer.sheets[sheet_name]
 
             for col in sheet.columns:
+
                 max_length = 0
-                col_letter = col[0].column_letter
+                first_cell = None
+
+                for cell in col:
+                    if hasattr(cell, "column_letter"):
+                        first_cell = cell
+                        break
+
+                if not first_cell:
+                    continue
+
+                col_letter = first_cell.column_letter
 
                 for cell in col:
                     try:
                         if cell.value:
-                            max_length = max(max_length, len(str(cell.value)))
+                            max_length = max(
+                                max_length,
+                                len(str(cell.value))
+                            )
                     except:
                         pass
 
-                sheet.column_dimensions[col_letter].width = max_length + 2
+                sheet.column_dimensions[col_letter].width = max_length + 4
 
     return send_file(caminho, as_attachment=True)
